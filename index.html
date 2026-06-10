@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Фулфилмент — 5post</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --g:#64B441;--gd:#4E9432;--gl:#F0F9EB;--glb:#D6F0C8;
+      --txt:#1A1A1A;--txt2:#6B6B6B;--txt3:#ABABAB;
+      --bdr:#E4E4E4;--bg:#F7F7F7;--w:#fff;
+      --r:10px;--rs:6px;--sh:0 1px 8px rgba(0,0,0,.07);--sh2:0 4px 20px rgba(0,0,0,.10);
+      --red:#E05050;--redbg:#FDECEA;--org:#E07000;--orgbg:#FFF3E0;
+    }
+    html{scroll-behavior:smooth}
+    body{font-family:'Inter',system-ui,sans-serif;color:var(--txt);background:var(--w);line-height:1.5;font-size:14px}
+
+    /* ── NAV ── */
+    .nav{background:var(--w);border-bottom:1px solid var(--bdr);position:sticky;top:0;z-index:100}
+    .nav-in{max-width:1200px;margin:0 auto;padding:0 32px;height:60px;display:flex;align-items:center;justify-content:space-between}
+    .logo{display:flex;align-items:center;gap:8px;text-decoration:none}
+    .logo-ic{width:32px;height:32px;background:var(--g);border-radius:7px;display:flex;align-items:center;justify-content:center;color:white;font-weight:800;font-size:16px}
+    .logo-name{font-weight:700;font-size:15px;color:var(--txt)}
+    .logo-sep{width:1px;height:16px;background:var(--bdr)}
+    .logo-sub{font-size:13px;color:var(--txt2)}
+    .nav-links{display:flex;align-items:center;gap:28px}
+    .nav-links a{font-size:13px;color:var(--txt2);text-decoration:none;font-weight:500;transition:color .15s}
+    .nav-links a:hover{color:var(--g)}
+    .nav-cta{background:var(--g);color:white;padding:8px 20px;border-radius:var(--rs);font-size:13px;font-weight:600}
+    .nav-cta:hover{background:var(--gd)!important;color:white!important}
+
+    /* ── COMMON ── */
+    .sec{padding:72px 32px}
+    .wrap{max-width:1200px;margin:0 auto}
+    .ey{font-size:11px;font-weight:700;letter-spacing:1.3px;text-transform:uppercase;color:var(--g);display:block;margin-bottom:10px}
+    h2{font-size:clamp(22px,2.8vw,34px);font-weight:800;line-height:1.2;margin-bottom:12px}
+    .lead{font-size:15px;color:var(--txt2);max-width:500px;line-height:1.7}
+    .btn{display:inline-flex;align-items:center;padding:11px 26px;border-radius:var(--rs);font-size:14px;font-weight:600;text-decoration:none;cursor:pointer;border:none;transition:all .2s;font-family:inherit}
+    .bg{background:var(--g);color:white}.bg:hover{background:var(--gd);box-shadow:0 4px 14px rgba(100,180,65,.3)}
+    .bo{background:transparent;color:var(--txt2);border:1.5px solid var(--bdr)}.bo:hover{border-color:var(--txt2);color:var(--txt)}
+
+    /* ── HERO ── */
+    .hero{background:var(--w);border-bottom:1px solid var(--bdr);padding:60px 32px 0;overflow:hidden}
+    .hg{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 540px;gap:48px;align-items:end}
+    .hl{padding-bottom:52px}
+    .hbadge{display:inline-flex;align-items:center;gap:6px;background:var(--gl);color:var(--g);font-size:12px;font-weight:600;padding:4px 12px;border-radius:20px;margin-bottom:20px}
+    .hbadge i{width:6px;height:6px;border-radius:50%;background:var(--g);display:inline-block}
+    h1{font-size:clamp(28px,3.5vw,46px);font-weight:800;line-height:1.15;margin-bottom:16px}
+    h1 em{color:var(--g);font-style:normal}
+    .hdesc{font-size:16px;color:var(--txt2);line-height:1.7;max-width:480px;margin-bottom:14px}
+    .htip{display:flex;gap:9px;background:var(--bg);border:1px solid var(--bdr);border-radius:var(--rs);padding:11px 14px;max-width:480px;margin-bottom:28px}
+    .htip p{font-size:12px;color:var(--txt2);line-height:1.6}
+    .htip a{color:var(--g);text-decoration:none;font-weight:500}
+    .hbtns{display:flex;gap:10px;margin-bottom:44px}
+    .hkpi{display:flex;border-top:1px solid var(--bdr);padding-top:22px}
+    .kpi{flex:1;padding-right:18px}
+    .kpi+.kpi{border-left:1px solid var(--bdr);padding-left:18px}
+    .kn{font-size:24px;font-weight:800;color:var(--g);line-height:1}
+    .kn sup{font-size:13px}
+    .kl{font-size:11px;color:var(--txt3);margin-top:3px}
+
+    /* ── ЛК-МАК ── */
+    .lk{background:var(--w);border:1px solid var(--bdr);border-radius:var(--r) var(--r) 0 0;overflow:hidden;box-shadow:var(--sh2)}
+    .lk-top{background:var(--w);border-bottom:1px solid var(--bdr);padding:9px 14px;display:flex;align-items:center;justify-content:space-between}
+    .lk-title{font-size:14px;font-weight:700}
+    .lk-cab{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--txt2);background:var(--bg);border:1px solid var(--bdr);border-radius:var(--rs);padding:4px 9px}
+    .lk-f{padding:7px 14px;border-bottom:1px solid var(--bdr);display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+    .chip{display:inline-flex;align-items:center;gap:4px;background:var(--bg);border:1px solid var(--bdr);border-radius:4px;padding:2px 7px;font-size:10px;color:var(--txt2)}
+    .chip-x{color:var(--txt3);font-size:9px}
+    .exp{margin-left:auto;background:var(--g);color:white;border:none;border-radius:4px;padding:4px 9px;font-size:10px;font-weight:700;font-family:inherit;cursor:default}
+    .lk-m{display:grid;grid-template-columns:repeat(5,1fr);border-bottom:1px solid var(--bdr)}
+    .lkm{padding:10px 12px;border-right:1px solid var(--bdr)}
+    .lkm:last-child{border-right:none}
+    .lkm-l{font-size:9px;color:var(--txt3);margin-bottom:3px}
+    .lkm-v{font-size:14px;font-weight:800;line-height:1.1}
+    .lkm-t{font-size:9px;margin-top:2px}
+    .up{color:#3DAC5B}.dn{color:var(--red)}
+    .lk-b{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:10px 14px}
+    .lkc{background:var(--w);border:1px solid var(--bdr);border-radius:var(--rs);padding:10px}
+    .lkc-h{font-size:10px;font-weight:700;color:var(--txt2);margin-bottom:8px;display:flex;justify-content:space-between}
+    .lkc-h span{font-weight:400;color:var(--txt3)}
+    /* статусы */
+    .st-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+    .st-col-h{font-size:9px;font-weight:700;color:var(--txt3);margin-bottom:4px;text-transform:uppercase;letter-spacing:.5px}
+    .st-row{display:flex;justify-content:space-between;align-items:center;padding:2px 0;font-size:10px;color:var(--txt2)}
+    .st-num{font-weight:700;color:var(--txt)}
+    .st-badge{display:inline-block;padding:1px 6px;border-radius:3px;font-size:9px;font-weight:600}
+    .s-g{background:#EBF7E5;color:#3DAC5B}
+    .s-r{background:var(--redbg);color:var(--red)}
+    .s-o{background:var(--orgbg);color:var(--org)}
+    .s-b{background:#E8F0FE;color:#2563EB}
+    .s-gr{background:#F3F3F3;color:#888}
+    /* warn */
+    .lk-warn{margin:0 14px 10px;background:#FFFBEB;border:1px solid #FDE68A;border-radius:var(--rs);padding:7px 10px;font-size:10px;color:#92400E;display:flex;align-items:flex-start;gap:6px}
+    /* остатки */
+    .ost-row{display:flex;justify-content:space-between;align-items:center;padding:3px 0;font-size:10px;border-bottom:1px solid var(--bg)}
+    .ost-row:last-child{border:none}
+    .ost-name{color:var(--txt);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-right:8px}
+    /* возвраты */
+    .voz-row{display:flex;align-items:center;gap:6px;margin-bottom:5px;font-size:10px}
+    .voz-bar-wrap{flex:1;height:4px;background:var(--bg);border-radius:2px;overflow:hidden}
+    .voz-bar{height:4px;border-radius:2px;background:var(--g)}
+    .voz-pct{font-size:10px;color:var(--txt2);min-width:28px;text-align:right}
+    /* доп ряд */
+    .lk-b2{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:0 14px 10px}
+    .lk-tbl{width:100%;border-collapse:collapse}
+    .lk-tbl tr{border-bottom:1px solid var(--bg)}
+    .lk-tbl td{padding:4px 0;font-size:10px;vertical-align:middle}
+    .lk-tbl td:last-child{text-align:right}
+    .mpl{display:inline-flex;width:14px;height:14px;border-radius:50%;align-items:center;justify-content:center;font-size:6px;font-weight:800;color:white;margin-right:1px;vertical-align:middle;flex-shrink:0}
+
+    /* ── ЧЕМ МЫ ЯВЛЯЕМСЯ ── */
+    .what{background:var(--bg)}
+    .what-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:36px}
+    .wcard{background:var(--w);border:1px solid var(--bdr);border-radius:var(--r);padding:26px;transition:all .2s}
+    .wcard:hover{border-color:var(--g);box-shadow:0 0 0 3px rgba(100,180,65,.07)}
+    .wcard-num{font-size:28px;font-weight:800;color:var(--g);line-height:1;margin-bottom:6px}
+    .wcard-num sup{font-size:16px}
+    .wcard-t{font-size:14px;font-weight:700;margin-bottom:6px}
+    .wcard-d{font-size:13px;color:var(--txt2);line-height:1.7}
+
+    /* ── КАК РАБОТАЕТ ── */
+    .how{background:var(--w)}
+    .steps{display:grid;grid-template-columns:repeat(4,1fr);margin-top:44px;position:relative}
+    .steps::after{content:'';position:absolute;top:17px;left:calc(12.5% + 8px);right:calc(12.5% + 8px);height:1px;background:var(--bdr);z-index:0}
+    .step{text-align:center;padding:0 14px}
+    .sn{width:34px;height:34px;border-radius:50%;border:1.5px solid var(--g);background:var(--w);color:var(--g);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 14px;position:relative;z-index:1;transition:all .2s}
+    .step:hover .sn{background:var(--g);color:white}
+    .st-title{font-size:13px;font-weight:700;margin-bottom:5px}
+    .st-desc{font-size:12px;color:var(--txt2);line-height:1.65}
+    .step-detail{margin-top:8px;font-size:11px;color:var(--txt3);line-height:1.5}
+
+    /* ── ЧТО ВНУТРИ ЛК ── */
+    .lksec{background:var(--bg)}
+    .lk-tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:36px}
+    .lktab{background:var(--w);border:1px solid var(--bdr);border-radius:var(--r);padding:22px;transition:all .2s;cursor:default}
+    .lktab:hover{border-color:var(--g)}
+    .lktab-icon{font-size:24px;margin-bottom:10px}
+    .lktab-name{font-size:14px;font-weight:700;margin-bottom:6px}
+    .lktab-desc{font-size:12px;color:var(--txt2);line-height:1.65;margin-bottom:12px}
+    .lktab-feats{display:flex;flex-direction:column;gap:4px}
+    .lktab-feat{display:flex;align-items:flex-start;gap:6px;font-size:11px;color:var(--txt2)}
+    .lktab-feat::before{content:'—';color:var(--g);flex-shrink:0;font-weight:700}
+
+    /* ── МАРКЕТПЛЕЙСЫ ── */
+    .mp{background:var(--w)}
+    .mp-in{display:grid;grid-template-columns:380px 1fr;gap:56px;align-items:start}
+    .mp-note{display:flex;gap:9px;background:var(--gl);border:1px solid var(--glb);border-radius:var(--rs);padding:12px 14px;margin-top:18px}
+    .mp-note p{font-size:12px;color:#3A7020;line-height:1.6}
+    .mp-note a{color:var(--g);text-decoration:none;font-weight:500}
+    .mp-list{display:flex;flex-direction:column;gap:8px}
+    .mp-row{display:flex;align-items:center;gap:12px;padding:11px 15px;background:var(--bg);border:1px solid var(--bdr);border-radius:var(--rs);transition:all .2s}
+    .mp-row:hover{border-color:var(--g);background:var(--w)}
+    .mp-logo{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:800;color:white;flex-shrink:0}
+    .mp-rn{font-size:13px;font-weight:600;flex:1}
+    .mp-tag{font-size:11px;color:var(--txt3)}
+    .mp-ok{color:var(--g);font-size:13px}
+
+    /* ── УСЛУГИ ── */
+    .svc{background:var(--bg)}
+    .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:36px}
+    .sc{background:var(--w);border:1px solid var(--bdr);border-radius:var(--r);padding:22px;transition:border-color .2s}
+    .sc:hover{border-color:var(--g)}
+    .sc-i{font-size:24px;margin-bottom:10px}
+    .sc-t{font-size:14px;font-weight:700;margin-bottom:5px}
+    .sc-d{font-size:12px;color:var(--txt2);line-height:1.65}
+
+    /* ── ОТЗЫВЫ ── */
+    .rev{background:var(--w)}
+    .rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:36px}
+    .rc{background:var(--bg);border:1px solid var(--bdr);border-radius:var(--r);padding:22px}
+    .rc-stars{color:var(--g);font-size:13px;letter-spacing:1px;margin-bottom:10px}
+    .rc-q{font-size:13px;color:var(--txt);line-height:1.75;margin-bottom:16px}
+    .rc-who{display:flex;align-items:center;gap:9px}
+    .rc-av{width:34px;height:34px;border-radius:50%;background:var(--g);color:white;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;flex-shrink:0}
+    .rc-nm{font-size:13px;font-weight:700}
+    .rc-rl{font-size:11px;color:var(--txt3)}
+
+    /* ── FAQ ── */
+    .faq{background:var(--bg)}
+    .faq-cols{display:grid;grid-template-columns:300px 1fr;gap:64px;align-items:start}
+    .faq-list{display:flex;flex-direction:column;gap:6px}
+    .fi{background:var(--w);border:1px solid var(--bdr);border-radius:var(--rs);overflow:hidden}
+    .fq{width:100%;text-align:left;background:none;border:none;padding:13px 16px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-size:13px;font-weight:600;color:var(--txt);gap:16px;font-family:inherit;transition:color .15s}
+    .fq:hover{color:var(--g)}
+    .fi-ico{width:20px;height:20px;border-radius:50%;border:1.5px solid var(--bdr);background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--txt2);transition:all .25s;flex-shrink:0;font-weight:300}
+    .fa{display:none;font-size:13px;color:var(--txt2);line-height:1.75;padding:0 16px 13px}
+    .fi.open .fi-ico{background:var(--g);border-color:var(--g);color:white;transform:rotate(45deg)}
+    .fi.open .fa{display:block}
+
+    /* ── ФОРМА ── */
+    .form-sec{background:var(--w);border-top:1px solid var(--bdr)}
+    .form-grid{display:grid;grid-template-columns:1fr 460px;gap:80px;align-items:start}
+    .fl{padding-top:6px}
+    .fdesc{font-size:15px;color:var(--txt2);line-height:1.7;margin-bottom:28px}
+    .ck{display:flex;flex-direction:column;gap:10px}
+    .cki{display:flex;gap:9px;font-size:13px;color:var(--txt2);align-items:flex-start}
+    .ck-dot{width:18px;height:18px;border-radius:50%;background:var(--gl);color:var(--g);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;flex-shrink:0;margin-top:1px}
+    .fbox{background:var(--bg);border:1px solid var(--bdr);border-radius:var(--r);padding:28px}
+    .fttl{font-size:16px;font-weight:700;margin-bottom:20px}
+    .fg{margin-bottom:12px}
+    .fg label{display:block;font-size:11px;font-weight:700;color:var(--txt2);margin-bottom:4px;text-transform:uppercase;letter-spacing:.4px}
+    .fg input,.fg select,.fg textarea{width:100%;padding:10px 12px;border:1.5px solid var(--bdr);border-radius:var(--rs);font-size:13px;color:var(--txt);background:var(--w);outline:none;transition:border-color .15s;font-family:inherit}
+    .fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--g)}
+    .fg input::placeholder,.fg textarea::placeholder{color:var(--txt3)}
+    .fg textarea{height:72px;resize:vertical}
+    .fg-2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .fsend{width:100%;padding:12px;background:var(--g);color:white;border:none;border-radius:var(--rs);font-size:14px;font-weight:600;cursor:pointer;transition:background .2s;margin-top:6px;font-family:inherit}
+    .fsend:hover{background:var(--gd)}
+    .fnote{font-size:11px;color:var(--txt3);text-align:center;margin-top:8px}
+
+    @media(max-width:1024px){
+      .hg,.mp-in,.form-grid{grid-template-columns:1fr}
+      .lk{display:none}
+      .what-grid,.svc-grid,.rev-grid,.lk-tabs{grid-template-columns:1fr 1fr}
+      .steps{grid-template-columns:1fr 1fr;gap:28px}.steps::after{display:none}
+      .faq-cols{grid-template-columns:1fr;gap:28px}
+    }
+    @media(max-width:640px){
+      .sec{padding:52px 16px}.hero{padding:44px 16px 0}
+      .nav-links a:not(.nav-cta){display:none}
+      .what-grid,.svc-grid,.rev-grid,.steps,.lk-tabs{grid-template-columns:1fr}
+      .hkpi{flex-direction:column;gap:14px}
+      .kpi+.kpi{border-left:none;border-top:1px solid var(--bdr);padding-left:0;padding-top:14px}
+      .fg-2{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav">
+  <div class="nav-in">
+    <a href="https://fivepost.ru" class="logo">
+      <div class="logo-ic">5</div>
+      <span class="logo-name">5post</span>
+      <div class="logo-sep"></div>
+      <span class="logo-sub">Фулфилмент</span>
+    </a>
+    <nav class="nav-links">
+      <a href="#whats-in">Что входит</a>
+      <a href="#tariffs">Тарифы</a>
+      <a href="#why">Почему 5post</a>
+      <a href="#faq">FAQ</a>
+      <a href="#form" class="nav-cta">Подключиться</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hg">
+    <div class="hl">
+      <div class="hbadge"><i></i>Фулфилмент для маркетплейсов от X5 Group</div>
+      <h1>Храним, маркируем,<br>собираем и доставляем<br><em>на WB, Ozon и Яндекс Маркет</em></h1>
+      <p class="hdesc">Вы занимаетесь продажами и развитием бизнеса. Мы берём на себя склад и операционные процессы.</p>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:4px">
+        <span style="display:inline-flex;align-items:center;gap:5px;background:rgba(100,180,65,.12);color:#8ACC6B;font-size:12px;font-weight:600;padding:4px 12px;border-radius:20px;border:1px solid rgba(100,180,65,.25)"><span style="width:6px;height:6px;border-radius:50%;background:#64B441;flex-shrink:0"></span>FBO</span>
+        <span style="display:inline-flex;align-items:center;gap:5px;background:rgba(100,180,65,.12);color:#8ACC6B;font-size:12px;font-weight:600;padding:4px 12px;border-radius:20px;border:1px solid rgba(100,180,65,.25)"><span style="width:6px;height:6px;border-radius:50%;background:#64B441;flex-shrink:0"></span>FBS</span>
+        <span style="display:inline-flex;align-items:center;gap:5px;background:rgba(100,180,65,.12);color:#8ACC6B;font-size:12px;font-weight:600;padding:4px 12px;border-radius:20px;border:1px solid rgba(100,180,65,.25)"><span style="width:6px;height:6px;border-radius:50%;background:#64B441;flex-shrink:0"></span>DBS</span>
+        <span style="display:inline-flex;align-items:center;gap:5px;background:rgba(100,180,65,.12);color:#8ACC6B;font-size:12px;font-weight:600;padding:4px 12px;border-radius:20px;border:1px solid rgba(100,180,65,.25)"><span style="width:6px;height:6px;border-radius:50%;background:#64B441;flex-shrink:0"></span>Интернет-магазины</span>
+      </div>
+      <div class="htip">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6.5" stroke="#64B441"/><path d="M7 6v4M7 4.5v.5" stroke="#64B441" stroke-width="1.2" stroke-linecap="round"/></svg>
+        <p>Уже работаете с нашей <a href="/dostavka-na-marketplace/">доставкой на маркетплейсы</a>? Фулфилмент подключается без смены договора.</p>
+      </div>
+      <div class="hbtns">
+        <a href="#form" class="btn bg">Получить расчёт</a>
+        <a href="#how" class="btn bo">Как это работает</a>
+      </div>
+      <div class="hkpi">
+        <div class="kpi"><div class="kn">17 000<sup>+</sup></div><div class="kl">точек выдачи в сети X5</div></div>
+        <div class="kpi"><div class="kn">99%</div><div class="kl">точность сборки заказов</div></div>
+        <div class="kpi"><div class="kn">3 дня</div><div class="kl">от заявки до первой отгрузки</div></div>
+        <div class="kpi"><div class="kn">0 ₽</div><div class="kl">минимального оборота</div></div>
+      </div>
+    </div>
+
+    <!-- Макет ЛК — реальные данные из макетов -->
+    <div class="lk">
+      <div class="lk-top">
+        <span class="lk-title">Сводка</span>
+        <div class="lk-cab">Кабинет: Фулфилмент <svg width="10" height="10" viewBox="0 0 10 10"><path d="M2 4l3 3 3-3" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linecap="round"/></svg></div>
+      </div>
+      <div class="lk-f">
+        <div class="chip">Период: неделя <span class="chip-x">×</span></div>
+        <div class="chip">Канал: все <span class="chip-x">×</span></div>
+        <div class="chip">Склад: все <span class="chip-x">×</span></div>
+        <button class="exp">Экспорт</button>
+      </div>
+      <div class="lk-m">
+        <div class="lkm"><div class="lkm-l">Продажи</div><div class="lkm-v">280 тыс ₽</div><div class="lkm-t up">↑ 12%</div></div>
+        <div class="lkm"><div class="lkm-l">Заказы</div><div class="lkm-v">117</div><div class="lkm-t up">↑ 11%</div></div>
+        <div class="lkm"><div class="lkm-l">Возвраты</div><div class="lkm-v">8</div><div class="lkm-t dn">↓ 3</div></div>
+        <div class="lkm"><div class="lkm-l">% выкупа</div><div class="lkm-v">94,2%</div><div class="lkm-t dn">↓ 1.1%</div></div>
+        <div class="lkm"><div class="lkm-l">Ср. чек</div><div class="lkm-v">2393 ₽</div><div class="lkm-t up">↑ 0.5%</div></div>
+      </div>
+      <div class="lk-b">
+        <!-- активные статусы -->
+        <div class="lkc">
+          <div class="lkc-h">Активные статусы <span>СЕЙЧАС</span></div>
+          <div class="st-grid">
+            <div>
+              <div class="st-col-h">Поставки</div>
+              <div class="st-row"><span>Создана</span><span class="st-num">8</span></div>
+              <div class="st-row"><span>Приёмка</span><span class="st-num">1</span></div>
+              <div class="st-row"><span><span class="st-badge s-o">С расхождениями</span></span><span class="st-num">3</span></div>
+              <div class="st-row"><span>Принята</span><span class="st-num">3</span></div>
+              <div class="st-row"><span><span class="st-badge s-r">Отменена</span></span><span class="st-num">2</span></div>
+            </div>
+            <div>
+              <div class="st-col-h">Заказы</div>
+              <div class="st-row"><span>Создано</span><span class="st-num">8</span></div>
+              <div class="st-row"><span>Собрано</span><span class="st-num">1</span></div>
+              <div class="st-row"><span><span class="st-badge s-g">Отгружено</span></span><span class="st-num">5</span></div>
+              <div class="st-row"><span>Доставлено</span><span class="st-num">3</span></div>
+              <div class="st-row"><span><span class="st-badge s-r">Возврат</span></span><span class="st-num">2</span></div>
+            </div>
+          </div>
+        </div>
+        <!-- контроль остатков -->
+        <div class="lkc">
+          <div class="lkc-h">Контроль остатков <span>СЕЙЧАС</span></div>
+          <div class="ost-row"><span class="ost-name">Ремешок Apple Watch</span><span class="st-badge s-r">0 шт · нет</span></div>
+          <div class="ost-row"><span class="ost-name">Наушники беспроводные</span><span class="st-badge s-r">5 шт · критично</span></div>
+          <div class="ost-row"><span class="ost-name">Зарядка Anker</span><span class="st-badge s-g">20 шт · норма</span></div>
+          <div class="ost-row"><span class="ost-name">Джинсы классические</span><span class="st-badge s-o">12 шт · мало</span></div>
+          <div class="ost-row"><span class="ost-name">Внешний аккумулятор</span><span class="st-badge s-g">20 шт · норма</span></div>
+        </div>
+      </div>
+      <div class="lk-warn">⚠️ Требует действий: 2 расхождения по поставкам, 3 документа на подпись</div>
+      <div class="lk-b2">
+        <div class="lkc">
+          <div class="lkc-h">Последние заказы <span>ЗА НЕДЕЛЮ</span></div>
+          <table class="lk-tbl">
+            <tr><td>76325445<br><span style="color:var(--txt3);font-size:9px">Wildberries · 45 тов.</span></td><td><span class="st-badge s-g">Отгружено</span></td></tr>
+            <tr><td>76325446<br><span style="color:var(--txt3);font-size:9px">Ozon · 12 тов.</span></td><td><span class="st-badge s-b">Создано → Собрано</span></td></tr>
+            <tr><td>76325440<br><span style="color:var(--txt3);font-size:9px">Wildberries · 45 тов.</span></td><td><span class="st-badge s-r">Отменено складом</span></td></tr>
+          </table>
+        </div>
+        <div class="lkc">
+          <div class="lkc-h">Причины возвратов <span>ЗА НЕДЕЛЮ</span></div>
+          <div class="voz-row"><span style="font-size:10px;color:var(--txt2);min-width:100px">Не подошёл размер</span><div class="voz-bar-wrap"><div class="voz-bar" style="width:44%"></div></div><span class="voz-pct">44%</span></div>
+          <div class="voz-row"><span style="font-size:10px;color:var(--txt2);min-width:100px">Брак / повреждение</span><div class="voz-bar-wrap"><div class="voz-bar" style="width:28%;background:#E07000"></div></div><span class="voz-pct">28%</span></div>
+          <div class="voz-row"><span style="font-size:10px;color:var(--txt2);min-width:100px">Не соответствует</span><div class="voz-bar-wrap"><div class="voz-bar" style="width:17%;background:#ABABAB"></div></div><span class="voz-pct">17%</span></div>
+          <div class="voz-row"><span style="font-size:10px;color:var(--txt2);min-width:100px">Передумал</span><div class="voz-bar-wrap"><div class="voz-bar" style="width:11%;background:#ABABAB"></div></div><span class="voz-pct">11%</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST STRIP -->
+<div style="border-bottom:1px solid var(--bdr);padding:14px 32px;background:var(--w)">
+  <div style="max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:28px;flex-wrap:wrap">
+    <span style="font-size:12px;color:var(--txt3);flex-shrink:0;white-space:nowrap">Работаем с:</span>
+    <span style="font-size:13px;font-weight:700;color:#CB11AB">Wildberries</span>
+    <span style="font-size:13px;font-weight:700;color:#005BFF">OZON</span>
+    <span style="font-size:13px;font-weight:700;color:#FC3F1D">Яндекс Маркет</span>
+    <span style="font-size:13px;font-weight:700;color:#21A038">МегаМаркет</span>
+    <span style="font-size:13px;font-weight:700;color:#E91E8C">Lamoda</span>
+    <span style="font-size:13px;font-weight:700;color:#F37021">Все Инструменты</span>
+    <span style="font-size:13px;font-weight:700;color:#B8860B">Золотое Яблоко</span>
+    <div style="margin-left:auto;display:flex;align-items:center;gap:6px;flex-shrink:0">
+      <span style="width:7px;height:7px;border-radius:50%;background:var(--g)"></span>
+      <span style="font-size:12px;font-weight:600;color:var(--txt2)">Часть экосистемы X5 Group</span>
+    </div>
+  </div>
+</div>
+
+<!-- КОМУ ПОДОЙДЁТ -->
+<section class="sec" style="background:var(--bg)" id="whom">
+  <div class="wrap">
+    <span class="ey">Кому подойдёт</span>
+    <h2>Для кого фулфилмент 5post</h2>
+    <p class="lead" style="margin-bottom:36px">Работаем с бизнесом любого размера — от 50 заказов в месяц</p>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px">
+      <div style="background:var(--w);border:1px solid var(--bdr);border-radius:var(--r);padding:24px;transition:all .2s" onmouseover="this.style.borderColor='var(--g)'" onmouseout="this.style.borderColor='var(--bdr)'">
+        <div style="font-size:28px;margin-bottom:12px">🛒</div>
+        <div style="font-size:14px;font-weight:700;margin-bottom:8px">Интернет-магазины</div>
+        <p style="font-size:13px;color:var(--txt2);line-height:1.65">Хотите перестать думать о складе и доставке — и сосредоточиться на маркетинге и ассортименте.</p>
+      </div>
+      <div style="background:var(--w);border:1px solid var(--bdr);border-radius:var(--r);padding:24px;transition:all .2s" onmouseover="this.style.borderColor='var(--g)'" onmouseout="this.style.borderColor='var(--bdr)'">
+        <div style="font-size:28px;margin-bottom:12px">📦</div>
+        <div style="font-size:14px;font-weight:700;margin-bottom:8px">Продавцы на маркетплейсах</div>
+        <p style="font-size:13px;color:var(--txt2);line-height:1.65">Продаёте на WB, Ozon, ЯМ и устали управлять остатками на каждой площадке вручную.</p>
+      </div>
+      <div style="background:var(--w);border:1px solid var(--bdr);border-radius:var(--r);padding:24px;transition:all .2s" onmouseover="this.style.borderColor='var(--g)'" onmouseout="this.style.borderColor='var(--bdr)'">
+        <div style="font-size:28px;margin-bottom:12px">🏭</div>
+        <div style="font-size:14px;font-weight:700;margin-bottom:8px">Производители</div>
+        <p style="font-size:13px;color:var(--txt2);line-height:1.65">Производите товар и хотите выйти на маркетплейсы без запуска собственной логистики.</p>
+      </div>
+      <div style="background:var(--w);border:1px solid var(--bdr);border-radius:var(--r);padding:24px;transition:all .2s" onmouseover="this.style.borderColor='var(--g)'" onmouseout="this.style.borderColor='var(--bdr)'">
+        <div style="font-size:28px;margin-bottom:12px">🚀</div>
+        <div style="font-size:14px;font-weight:700;margin-bottom:8px">Растущий бизнес</div>
+        <p style="font-size:13px;color:var(--txt2);line-height:1.65">Объём растёт — нанимать склад и людей не хочется. Нужна инфраструктура, которая масштабируется сама.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ЧТО ВЫ ПОЛУЧАЕТЕ -->
+<section class="sec what">
+  <div class="wrap">
+    <span class="ey">Зачем нужен фулфилмент</span>
+    <h2>Что теряют продавцы<br>без фулфилмента</h2>
+    <p class="lead">Три проблемы, которые напрямую бьют по выручке</p>
+    <div class="what-grid">
+      <div class="wcard">
+        <div class="wcard-num">📉</div>
+        <div class="wcard-t">Товар заканчивается</div>
+        <p class="wcard-d">Позиции на маркетплейсе падают, продажи проседают. Алгоритмы площадок понижают карточку — и вернуть позиции стоит дорого.</p>
+      </div>
+      <div class="wcard">
+        <div class="wcard-num">❌</div>
+        <div class="wcard-t">Ошибки в остатках</div>
+        <p class="wcard-d">Продажи есть, а товара уже нет. Ручная сверка между площадками не успевает — заказы приходят на то, чего нет на складе.</p>
+      </div>
+      <div class="wcard">
+        <div class="wcard-num">↩️</div>
+        <div class="wcard-t">Возвраты растут</div>
+        <p class="wcard-d">Причины неизвестны, деньги теряются. Без аналитики невозможно понять, что исправить в карточке или в упаковке.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ЧТО ВХОДИТ В ФУЛФИЛМЕНТ -->
+<section class="sec" style="background:var(--bg)" id="whats-in">
+  <div class="wrap">
+    <span class="ey">Состав услуги</span>
+    <h2>Что входит в фулфилмент</h2>
+    <p class="lead">Полный цикл — от разгрузки вашей машины до доставки покупателю</p>
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:16px;margin-bottom:32px">
+      <span style="font-size:12px;color:var(--txt3);margin-right:4px">Работаем по схемам:</span>
+      <span style="display:inline-flex;align-items:center;gap:6px;background:var(--gl);color:var(--g);font-size:13px;font-weight:600;padding:5px 14px;border-radius:20px;border:1px solid var(--glb)">● FBO</span>
+      <span style="display:inline-flex;align-items:center;gap:6px;background:var(--gl);color:var(--g);font-size:13px;font-weight:600;padding:5px 14px;border-radius:20px;border:1px solid var(--glb)">● FBS</span>
+      <span style="display:inline-flex;align-items:center;gap:6px;background:var(--gl);color:var(--g);font-size:13px;font-weight:600;padding:5px 14px;border-radius:20px;border:1px solid var(--glb)">● DBS</span>
+      <span style="display:inline-flex;align-items:center;gap:6px;background:var(--gl);color:var(--g);font-size:13px;font-weight:600;padding:5px 14px;border-radius:20px;border:1px solid var(--glb)">● Интернет-магазины и B2B</span>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px">
+      <div style="background:var(--w);border:1px solid var(--bdr);border-radius:var(--r);padding:20px;display:flex;gap:14px;align-items:flex-start">
+        <span style="font-size:24px;flex-shrink:0">📥</span>
+        <div><div style="font-size:14px;font-weight:700;margin-bottom:4px">Приёмка товара</div><p style="font-size:12px;color:var(--txt2);line-height:1.6">Пересчёт, проверка, сканирование. Документ — в ЛК.</p></div>
+      </div>
+      <div style="background:var(--w);border:1px solid var(--bdr);border-radius:var(--r);padding:20px;display:flex;gap:14px;align-items:flex-start">
+        <span style="font-size:24px;flex-shrink:0">🏭</span>
+        <div><div style="font-size:14px;font-weight:700;margin-bottom:4px">Хранение</div><p style="font-size:12px;color:var(--txt2);line-height:1.6">Адресное хранение. Мониторинг остатков 24/7.</p></div>
+      </div>
+      <div style="background:var(--w);border:1px solid var(--bdr);border-radius:var(--r);padding:20px;display:flex;gap:14px;align-items:flex-start">
+        <span style="font-size:24px;flex-shrink:0">🎁</span>
+        <div><div style="font-size:14px;font-weight:700;margin-bottom:4px">Сборка заказов</div><p style="font-size:12px;color:var(--txt2);line-height:1.6">99% точность. Автоформирование грузомест.</p></div>
+      </div>
+      <div style="background:var(--w);border:1px solid var(--bdr);border-radius:var(--r);padding:20px;display:flex;gap:14px;align-items:flex-start">
+        <span style="font-size:24px;flex-shrink:0">📦</span>
+        <div><div style="font-size:14px;font-weight:700;margin-bottom:4px">Упаковка</div><p style="font-size:12px;color:var(--txt2);line-height:1.6">Стандартная или фирменная — по вашим требованиям.</p></div>
+      </div>
+      <div style="background:var(--w);border:1px solid var(--bdr);border-radius:var(--r);padding:20px;display:flex;gap:14px;align-items:flex-start">
+        <span style="font-size:24px;flex-shrink:0">🏷️</span>
+        <div><div style="font-size:14px;font-weight:700;margin-bottom:4px">Маркировка</div><p style="font-size:12px;color:var(--txt2);line-height:1.6">Штрихкоды, ЧЕСТНЫЙ ЗНАК, этикетки площадок.</p></div>
+      </div>
+      <div style="background:var(--w);border:1px solid var(--bdr);border-radius:var(--r);padding:20px;display:flex;gap:14px;align-items:flex-start">
+        <span style="font-size:24px;flex-shrink:0">🚚</span>
+        <div><div style="font-size:14px;font-weight:700;margin-bottom:4px">Отгрузка на маркетплейсы</div><p style="font-size:12px;color:var(--txt2);line-height:1.6">FBO, FBS, DBS — по требованиям площадки.</p></div>
+      </div>
+      <div style="background:var(--w);border:1px solid var(--bdr);border-radius:var(--r);padding:20px;display:flex;gap:14px;align-items:flex-start">
+        <span style="font-size:24px;flex-shrink:0">↩️</span>
+        <div><div style="font-size:14px;font-weight:700;margin-bottom:4px">Обработка возвратов</div><p style="font-size:12px;color:var(--txt2);line-height:1.6">Осмотр, сортировка, аналитика причин в ЛК.</p></div>
+      </div>
+      <div style="background:var(--w);border:1px solid var(--bdr);border-radius:var(--r);padding:20px;display:flex;gap:14px;align-items:flex-start">
+        <span style="font-size:24px;flex-shrink:0">🏪</span>
+        <div><div style="font-size:14px;font-weight:700;margin-bottom:4px">Доставка покупателям</div><p style="font-size:12px;color:var(--txt2);line-height:1.6">17 000+ ПВЗ в Пятёрочках и Перекрёстках по всей России.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- КАК РАБОТАЕТ -->
+<section class="sec how" id="how">
+  <div class="wrap">
+    <span class="ey">Как начать</span>
+    <h2>От заявки до первой отгрузки — 3 дня</h2>
+    <p class="lead">Без долгой интеграции и бумажной волокиты</p>
+    <div class="steps">
+      <div class="step">
+        <div class="sn">1</div>
+        <div class="st-title">Заявка и договор</div>
+        <p class="st-desc">Оставьте заявку — менеджер свяжется за 2 часа. Покажем ЛК в действии, согласуем условия, подпишем онлайн.</p>
+        <p class="step-detail">Доступ в личный кабинет — в день подписания</p>
+      </div>
+      <div class="step">
+        <div class="sn">2</div>
+        <div class="st-title">Загрузите каталог</div>
+        <p class="st-desc">Добавьте товары в ЛК: артикул, штрихкоды, габариты, упаковку. Честный знак — поддерживается.</p>
+        <p class="step-detail">Импорт или ручной ввод · Варианты упаковки · Партии производства</p>
+      </div>
+      <div class="step">
+        <div class="sn">3</div>
+        <div class="st-title">Привезите первую партию</div>
+        <p class="st-desc">Оформите поставку в ЛК, укажите водителя и дату. Склад примет, пересчитает и разместит товар в тот же день.</p>
+        <p class="step-detail">Торг-2 от склада — в вашем ЛК · Статусы в реальном времени</p>
+      </div>
+      <div class="step">
+        <div class="sn">4</div>
+        <div class="st-title">Продавайте — мы делаем остальное</div>
+        <p class="st-desc">Заказы приходят сами. Мы собираем и отправляем. Вы видите остатки, выкуп и возвраты — и управляете ассортиментом.</p>
+        <p class="step-detail">Мониторинг остатков 24/7 · Аналитика по каналам · Экспорт</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ПОЧЕМУ 5POST -->
+<section class="sec" style="background:var(--w)" id="why">
+  <div class="wrap">
+    <span class="ey">Почему 5post</span>
+    <h2 style="margin-bottom:32px">Преимущества фулфилмента<br>от 5post</h2>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:auto auto;gap:14px">
+
+      <!-- Зелёная большая карточка — главный аргумент -->
+      <div style="background:var(--g);border-radius:var(--r);padding:28px;grid-row:span 2;display:flex;flex-direction:column;justify-content:flex-end;min-height:280px;position:relative;overflow:hidden">
+        <div style="position:absolute;top:20px;left:20px;width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.5)"></div>
+        <div style="font-size:32px;font-weight:800;color:white;line-height:1.1;margin-bottom:8px">17 000+<br>точек выдачи</div>
+        <div style="font-size:13px;color:rgba(255,255,255,.85);line-height:1.6">в магазинах Пятёрочки, Перекрёстка и Чижика — покупатели забирают по дороге домой. Выкуп выше, возвратов меньше.</div>
+      </div>
+
+      <div style="background:var(--bg);border:1px solid var(--bdr);border-radius:var(--r);padding:24px">
+        <div style="width:8px;height:8px;border-radius:50%;background:var(--g);margin-bottom:16px"></div>
+        <div style="font-size:14px;font-weight:700;margin-bottom:6px">Инфраструктура X5 Group</div>
+        <p style="font-size:13px;color:var(--txt2);line-height:1.6">Пятёрочка, Перекрёсток, Чижик. 85 регионов России.</p>
+      </div>
+
+      <div style="background:var(--bg);border:1px solid var(--bdr);border-radius:var(--r);padding:24px">
+        <div style="width:8px;height:8px;border-radius:50%;background:var(--g);margin-bottom:16px"></div>
+        <div style="font-size:14px;font-weight:700;margin-bottom:6px">Работа по всем схемам</div>
+        <p style="font-size:13px;color:var(--txt2);line-height:1.6">FBO, FBS, DBS — выбираете то, что подходит вашей площадке.</p>
+      </div>
+
+      <div style="background:var(--bg);border:1px solid var(--bdr);border-radius:var(--r);padding:24px">
+        <div style="width:8px;height:8px;border-radius:50%;background:var(--g);margin-bottom:16px"></div>
+        <div style="font-size:14px;font-weight:700;margin-bottom:6px">Личный кабинет с аналитикой</div>
+        <p style="font-size:13px;color:var(--txt2);line-height:1.6">Остатки в реальном времени, причины возвратов, динамика по каналам — не отчёт раз в день.</p>
+      </div>
+
+      <div style="background:var(--bg);border:1px solid var(--bdr);border-radius:var(--r);padding:24px">
+        <div style="width:8px;height:8px;border-radius:50%;background:var(--g);margin-bottom:16px"></div>
+        <div style="font-size:14px;font-weight:700;margin-bottom:6px">Персональный менеджер</div>
+        <p style="font-size:13px;color:var(--txt2);line-height:1.6">Один человек на весь срок — не call-центр. Знает ваш ассортимент, решает вопросы напрямую.</p>
+      </div>
+
+      <!-- Фото-карточка -->
+      <div style="background:linear-gradient(135deg,#1a3a1a,#2d5a2d);border-radius:var(--r);overflow:hidden;grid-column:span 1;min-height:140px;display:flex;align-items:flex-end;padding:20px;position:relative">
+        <div style="position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1553413077-190dd305871c?w=400&q=80') center/cover no-repeat;opacity:.35"></div>
+        <div style="position:relative;z-index:1">
+          <div style="font-size:14px;font-weight:700;color:white;margin-bottom:4px">Договор и интеграция</div>
+          <div style="font-size:12px;color:rgba(255,255,255,.75)">для ООО, ИП и самозанятых · от 3 дней</div>
+        </div>
+      </div>
+
+      <div style="background:var(--bg);border:1px solid var(--bdr);border-radius:var(--r);padding:24px">
+        <div style="width:8px;height:8px;border-radius:50%;background:var(--g);margin-bottom:16px"></div>
+        <div style="font-size:14px;font-weight:700;margin-bottom:6px">Доставка и фулфилмент в одном окне</div>
+        <p style="font-size:13px;color:var(--txt2);line-height:1.6">Уже работаете с нашей доставкой? Переходите без смены договора.</p>
+      </div>
+
+    </div>
+    <div style="margin-top:16px;background:var(--txt);border-radius:var(--r);padding:16px 24px;display:flex;align-items:center;justify-content:center;gap:16px">
+      <a href="#form" style="color:white;text-decoration:none;font-size:14px;font-weight:600;display:flex;align-items:center;gap:8px">РАССЧИТАТЬ СТОИМОСТЬ <span style="font-size:16px">↗</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ТАРИФЫ -->
+<section class="sec" style="background:var(--bg)" id="tariffs">
+  <div class="wrap">
+    <span class="ey">Тарифы</span>
+    <h2>Прозрачная стоимость</h2>
+    <p class="lead" style="margin-bottom:8px">Платите только за то, что реально использовали. Никаких абонентских платежей и скрытых комиссий.</p>
+    <p style="font-size:13px;color:var(--txt3);margin-bottom:36px">Точная стоимость рассчитывается индивидуально — зависит от объёма, категории товара и набора услуг</p>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:20px">
+      <div style="background:var(--w);border:1.5px solid var(--bdr);border-radius:var(--r);padding:24px">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--txt3);margin-bottom:12px">Приёмка</div>
+        <div style="font-size:28px;font-weight:800;color:var(--g);margin-bottom:4px">от 0,1 ₽</div>
+        <div style="font-size:13px;color:var(--txt2);margin-bottom:16px">за единицу товара</div>
+        <div style="font-size:12px;color:var(--txt2);line-height:1.7;border-top:1px solid var(--bdr);padding-top:14px">Пересчёт, проверка, сканирование, размещение по ячейкам. Торг-2 — в ЛК.</div>
+      </div>
+      <div style="background:var(--w);border:1.5px solid var(--bdr);border-radius:var(--r);padding:24px">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--txt3);margin-bottom:12px">Хранение</div>
+        <div style="font-size:28px;font-weight:800;color:var(--g);margin-bottom:4px">от 7 ₽</div>
+        <div style="font-size:13px;color:var(--txt2);margin-bottom:16px">за единицу в месяц</div>
+        <div style="font-size:12px;color:var(--txt2);line-height:1.7;border-top:1px solid var(--bdr);padding-top:14px">Оплата за фактически занятый объём по дням. Мониторинг остатков 24/7 включён.</div>
+      </div>
+      <div style="background:var(--w);border:1.5px solid var(--bdr);border-radius:var(--r);padding:24px">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--txt3);margin-bottom:12px">Сборка заказа</div>
+        <div style="font-size:28px;font-weight:800;color:var(--g);margin-bottom:4px">от 13 ₽</div>
+        <div style="font-size:13px;color:var(--txt2);margin-bottom:16px">за первую единицу</div>
+        <div style="font-size:12px;color:var(--txt2);line-height:1.7;border-top:1px solid var(--bdr);padding-top:14px">Каждая последующая единица в заказе — дешевле. Автоформирование грузомест.</div>
+      </div>
+    </div>
+    <div style="background:var(--gl);border:1px solid var(--glb);border-radius:var(--r);padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap">
+      <div>
+        <div style="font-size:14px;font-weight:700;margin-bottom:4px">Упаковка, маркировка, доставка и возвраты — отдельно</div>
+        <p style="font-size:13px;color:var(--txt2)">Выбираете только то, что нужно вашему бизнесу. Получите точный расчёт под ваш SKU и объём заказов.</p>
+      </div>
+      <a href="#form" class="btn bg" style="white-space:nowrap">Получить расчёт</a>
+    </div>
+  </div>
+</section>
+
+<!-- ОТЗЫВЫ -->
+<section class="sec rev">
+  <div class="wrap">
+    <span class="ey">Клиенты о нас</span>
+    <h2>Реальные результаты</h2>
+    <div class="rev-grid">
+      <div class="rc">
+        <div class="rc-stars">★★★★★</div>
+        <p class="rc-q">«Раньше остатки на трёх площадках жили своей жизнью. Узнавали об out-of-stock когда уже потеряли позиции. Сейчас ЛК показывает "критично" заранее — успеваем подвезти до того, как карточка упала.»</p>
+        <div class="rc-who"><div class="rc-av">МС</div><div><div class="rc-nm">Мария Соколова</div><div class="rc-rl">Wildberries + Ozon + свой сайт · одежда</div></div></div>
+      </div>
+      <div class="rc">
+        <div class="rc-stars">★★★★★</div>
+        <p class="rc-q">«Увидели в аналитике: 44% возвратов — "не подошёл размер". Обновили описание и таблицу размеров в карточках. За месяц возвраты упали на 31%. Эту цифру раньше просто не знали.»</p>
+        <div class="rc-who"><div class="rc-av">ИВ</div><div><div class="rc-nm">Илья Васильев</div><div class="rc-rl">Яндекс Маркет · товары для дома</div></div></div>
+      </div>
+      <div class="rc">
+        <div class="rc-stars">★★★★★</div>
+        <p class="rc-q">«Перешли с собственного склада. Экономия по FTE — 40%, скорость сборки выросла втрое. Но главное — выкуп вырос на 8%. Оказалось, покупатели охотнее забирают из Пятёрочки, чем ждут курьера.»</p>
+        <div class="rc-who"><div class="rc-av">АК</div><div><div class="rc-nm">Андрей Климов</div><div class="rc-rl">Ozon · электроника и аксессуары</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec faq" id="faq">
+  <div class="wrap">
+    <div class="faq-cols">
+      <div>
+        <span class="ey">FAQ</span>
+        <h2>Частые вопросы</h2>
+        <p class="lead" style="margin-bottom:24px">Не нашли ответ? Напишите нам.</p>
+        <a href="#form" class="btn bg">Задать вопрос</a>
+      </div>
+      <div class="faq-list">
+        <div class="fi">
+          <button class="fq" onclick="faq(this)">Что входит в услугу фулфилмента?<span class="fi-ico">+</span></button>
+          <div class="fa">Приёмка товара, адресное хранение, сборка заказов, упаковка, маркировка (в том числе Честный знак), отгрузка на маркетплейсы и покупателям, обработка возвратов. Всё это управляется через личный кабинет — в реальном времени.</div>
+        </div>
+        <div class="fi">
+          <button class="fq" onclick="faq(this)">С какими маркетплейсами вы работаете?<span class="fi-ico">+</span></button>
+          <div class="fa">Wildberries, Ozon, Яндекс Маркет, МегаМаркет, Lamoda, Все Инструменты, Золотое Яблоко, Авито и другие. Интеграция через API — заказы поступают в ЛК автоматически, остатки синхронизируются без ручного ввода.</div>
+        </div>
+        <div class="fi">
+          <button class="fq" onclick="faq(this)">Сколько стоит? Будут ли скрытые платежи?<span class="fi-ico">+</span></button>
+          <div class="fa">Приёмка — от 0,1 ₽ за единицу. Хранение — от 7 ₽ за единицу в месяц. Сборка первой единицы — от 13 ₽. Никаких абонентских платежей и «минимальных оборотов». Итоговый счёт формируется в ЛК автоматически с детализацией по каждой операции.</div>
+        </div>
+        <div class="fi">
+          <button class="fq" onclick="faq(this)">Какой минимальный объём для старта?<span class="fi-ico">+</span></button>
+          <div class="fa">Минимального объёма нет — работаем от 50 заказов в месяц. Тариф рассчитывается от фактического объёма: чем больше заказов, тем дешевле единица.</div>
+        </div>
+        <div class="fi">
+          <button class="fq" onclick="faq(this)">Как быстро можно начать?<span class="fi-ico">+</span></button>
+          <div class="fa">Договор и доступ в ЛК — за 1–2 дня. Первую поставку принимаем в день подписания договора. Интеграция с маркетплейсом — от 1 до 5 дней. На практике первые заказы уходят покупателям уже на третий день после обращения.</div>
+        </div>
+        <div class="fi">
+          <button class="fq" onclick="faq(this)">Чем отличается от доставки на маркетплейсы?<span class="fi-ico">+</span></button>
+          <div class="fa">Доставка на маркетплейсы — вы храните товар у себя, мы везём его на склад площадки. Фулфилмент — мы сами ваш склад: принимаем товар, храним и отправляем напрямую покупателям по всем каналам. Один договор, один ЛК, одна команда.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ФОРМА -->
+<section class="sec form-sec" id="form">
+  <div class="wrap">
+    <div class="form-grid">
+      <div class="fl">
+        <span class="ey">Подключение</span>
+        <h2>Получите расчёт фулфилмента<br>за 2 часа</h2>
+        <p class="fdesc">Покажем личный кабинет, рассчитаем стоимость под ваш ассортимент и объём заказов. Без обязательств и долгих переговоров.</p>
+        <ul class="ck">
+          <li class="cki"><span class="ck-dot">✓</span>Демо личного кабинета — бесплатно</li>
+          <li class="cki"><span class="ck-dot">✓</span>Расчёт под ваш SKU и объём заказов</li>
+          <li class="cki"><span class="ck-dot">✓</span>30 дней тестового периода</li>
+          <li class="cki"><span class="ck-dot">✓</span>Персональный менеджер — не call-центр</li>
+        </ul>
+      </div>
+      <div class="fbox">
+        <div class="fttl">Заявка на подключение</div>
+        <div class="fg-2">
+          <div class="fg"><label>Имя</label><input type="text" placeholder="Иван Иванов"/></div>
+          <div class="fg"><label>Телефон</label><input type="tel" placeholder="+7 (___) ___-__-__"/></div>
+        </div>
+        <div class="fg"><label>Email</label><input type="email" placeholder="ivan@company.ru"/></div>
+        <div class="fg"><label>Компания</label><input type="text" placeholder="ООО «Название»"/></div>
+        <div class="fg"><label>Объём заказов в месяц</label>
+          <select><option value="">Выберите</option><option>до 500</option><option>500 — 5 000</option><option>5 000 — 20 000</option><option>более 20 000</option></select>
+        </div>
+        <div class="fg"><label>Маркетплейсы</label>
+          <select><option value="">Где продаёте?</option><option>Wildberries</option><option>Ozon</option><option>Яндекс Маркет</option><option>Несколько площадок</option><option>Только свой сайт</option></select>
+        </div>
+        <div class="fg"><label>Комментарий</label><textarea placeholder="Категория товара, вопросы по маркировке..."></textarea></div>
+        <button class="fsend" onclick="send(this)">Получить расчёт →</button>
+        <p class="fnote">Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function faq(btn){btn.parentElement.classList.toggle('open')}
+  function send(btn){btn.textContent='✓ Заявка отправлена!';btn.style.background='#3A8A2A';btn.disabled=true}
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'})}})
+  })
+</script>
+</body>
+</html>
